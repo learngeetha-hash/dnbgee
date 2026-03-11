@@ -1,0 +1,21 @@
+steps:
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build','-t','us-central1-docker.pkg.dev/geetha-dnb01/java-repo/java/java-app','.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push','us-central1-docker.pkg.dev/geetha-dnb01/java-repo/java/java-app']
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - run
+  - deploy
+  - java-app
+  - --image
+  - us-central1-docker.pkg.dev/geetha-dnb01/java/java-repo/java-app
+  - --region
+  - us-central1
+  - --platform
+  - managed
+  - --allow-unauthenticated
