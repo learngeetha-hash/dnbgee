@@ -6,6 +6,9 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push','us-central1-docker.pkg.dev/geetha-dnb01/java-repo/java/java-app']
 
+options:
+  logging: CLOUD_LOGGING_ONLY
+  
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   args:
   - gcloud
